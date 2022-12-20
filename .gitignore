@@ -1,3 +1,8 @@
 # test
 test/
 
+# nodemodule
+node_modules/
+
+# .env
+.env
