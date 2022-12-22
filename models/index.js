@@ -2,10 +2,11 @@ const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 
 const connect = () => {
-  mongoose
-    // .connect("mongodb://localhost:27017/spa_mall")
-    .connect(process.env.MONGODB_URL)
-    .catch((err) => console.log(err));
+  if (process.env.NODE_ENV == "production") {
+    mongoose.connect(process.env.MONGODB_PRODUCTION_URL).catch((err) => console.log(err));
+  } else if (process.env.NODE_ENV == "production") {
+    mongoose.connect(process.env.MONGODB_DEVELOP_URL).catch((err) => console.log(err));
+  }
 };
 
 mongoose.connection.on("error", (err) => {
