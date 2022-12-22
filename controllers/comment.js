@@ -73,13 +73,18 @@ const postBoardComment = async (req, res) => {
 
 const putBoardComment = async (req, res) => {
   try {
-    const { boardId } = req.params;
+    const { boardId, commentId } = req.params;
     const { body, userName } = req.body;
 
     // 조기 리턴
     const board = await Board.findById(boardId);
     if (board === null) {
       return res.status(400).send({ message: "🛑 게시글이 없습니다." });
+    }
+
+    const _comment = await Comment.findById(commentId);
+    if (_comment === null) {
+      return res.status(400).send({ message: "🛑 댓글이 없습니다." });
     }
 
     if (Object.keys(req.body).length !== 2) {
@@ -101,7 +106,7 @@ const putBoardComment = async (req, res) => {
 
     console.log("result", result);
 
-    res.send({message: "success"});
+    res.send({ message: "success" });
   } catch (error) {
     console.error(error);
 
@@ -141,9 +146,9 @@ const deleteComments = async (req, res) => {
     console.log("result", result);
 
     if (result.deletedCount > 0) {
-      return res.send({message: "success"});
+      return res.send({ message: "success" });
     } else {
-      return res.send({message: "nothing to delete"});
+      return res.send({ message: "nothing to delete" });
     }
   } catch (error) {
     console.error(error);
