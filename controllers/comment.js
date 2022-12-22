@@ -95,8 +95,8 @@ const putBoardComment = async (req, res) => {
       return res.status(400).send("🛑 댓글 내용을 입력해주세요");
     }
 
-    const result = await Board.findByIdAndUpdate(
-      boardId,
+    const result = await Comment.findByIdAndUpdate(
+      commentId,
       {
         body,
         userName,
