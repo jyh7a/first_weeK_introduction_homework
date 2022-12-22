@@ -4,7 +4,7 @@
   "description": "",
   "main": "api_spec.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "pm2 start app.js"
   },
   "keywords": [],
   "author": "",
