@@ -3,7 +3,8 @@ mongoose.set("strictQuery", false);
 
 const connect = () => {
   mongoose
-    .connect("mongodb://localhost:27017/spa_mall")
+    // .connect("mongodb://localhost:27017/spa_mall")
+    .connect(process.env.MONGODB_URL)
     .catch((err) => console.log(err));
 };
 
